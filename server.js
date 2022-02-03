@@ -1,9 +1,11 @@
 const express = require('express')
 const path = require('path')
+const { env } = require('process')
 const app = express()
 
 const HEADS = "heads"
 const TAILS = "tails"
+const PORT = 8000
 
 coinflip = {
     heads: {
@@ -16,7 +18,7 @@ coinflip = {
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
-}).listen(8000)
+}).listen(process.env.PORT || PORT)
 
 app.get('/api/coinflip', (req, res) => {
     var flipped = ''
